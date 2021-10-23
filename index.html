@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Not_Found?</title>
+    <meta charset='utf-8' />
+    <style>
+        /* global */
+
+        * {
+            padding: 0;
+            margin: 0;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+
+        sub {
+            font-size: 60%;
+        }
+
+        body {
+            font-family: "SF Pro Text", sans-serif;
+        }
+
+        img {
+            margin-top: 5px;
+            width: 60px;
+            height: 60px;
+        }
+
+        /* blurred background */
+
+        #overflowbg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("./bg-blurred.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            z-index: -999;
+        }
+
+        #normalbg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("./bg.jpg");
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            z-index: -998;
+        }
+
+        /* blurred background for btns and stuff */
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: url('./bg-blurred.jpg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-attachment: fixed;
+            z-index: -1;
+            border-radius: 0.5em;
+        }
+
+        #banner {
+            z-index: 0;
+            position: absolute;
+            width: 100%;
+            height: fit-content;
+            text-align: center;
+        }
+
+        #banner .background {
+            top: 50px;
+            height: 115px;
+            filter: brightness(70%);
+        }
+
+        .big-text {
+            margin-top: 50px;
+            font-size: 50px;
+        }
+
+        .small-text {
+            margin-top: 10px;
+            font-size: 30px;
+        }
+
+        .exsmall-text {
+            position: absolute;
+            left: 800px;
+            text-align: right;
+            font-size: 15px;
+        }
+
+        /* div for contents */
+
+        #wrapper {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -998;
+        }
+
+        /* doge. */
+
+        .dogecage {
+            display: flex;
+            z-index: -997;
+            margin-top: 25px;
+            height: 25px;
+            width: 150px;
+            list-style-type: none;
+        }
+
+        #doge {
+            z-index: -996;
+            height: 25px;
+            width: 50px;
+            display: block;
+            background-image: url('./doge.png');
+            background-size: contain;
+        }
+
+        /* buttons */
+
+        #btnpanel {
+            display: flex;
+            position: absolute;
+            bottom: 30px;
+            margin: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            width: max-content;
+            padding: 5px;
+        }
+
+        #btnpanel .background {
+            filter: brightness(70%);
+        }
+
+        .btn {
+            z-index: 1;
+            display: block;
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 70px;
+            width: 70px;
+            margin: 5px;
+            margin-left: 7px;
+            margin-right: 7px;
+        }
+    </style>
+</head>
+
+<body onresize="resize()">
+    <div id="overflowbg"></div>
+    <div id="normalbg"></div>
+    <div id="banner">
+        <div class="background"></div>
+        <div class="big-text">Oh, no! This page seems to be dead!</div>
+        <div class="small-text">
+            Error<sub> (made by) </sub>404 : Your connection is fine~ relax~
+        </div>
+    </div>
+    <div id='wrapper'>
+        <div class="dogecage">
+            <div id="doge"></div>
+            <div id="doge"></div>
+            <div id="doge"></div>
+        </div>
+        <div id="btnpanel" style="bottom: 105px;">
+            <div class="background"></div>
+            Things I do :
+        </div>
+        <div id="btnpanel">
+            <div class="background"></div>
+            <div class="btn"><a href="https://store.steampowered.com/"><img src='./STEAM.png' alt='Steam'></a></div>
+            <div class="btn"><a href="https://discord.com/"><img src='./DC.png' alt='Discord'></a></div>
+            <div class="btn"><a href="https://youtube.com"><img src='./YT.png' alt='Youtube (music)'></a></div>
+            <div class="btn"><a href="https://nisra.net"><img src='./NISRA.png' alt='NISRA'></a></div>
+        </div>
+    </div>
+
+    <script>
+        var img = new Image();
+        img.src = './bg.jpg';
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        var imgRatio = new Number;
+        var wrapper = document.getElementById('wrapper');
+        var screenRatio = (width / height);
+
+        // dynamic wrapper change
+        function resize() {
+            width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            screenRatio = (width / height);
+            if (screenRatio >= imgRatio) {
+                wrapper.style.height = 100 + '%';
+                wrapper.style.width = (100 / screenRatio) * imgRatio + '%';
+            } else {
+                wrapper.style.width = 100 + '%';
+                wrapper.style.height = (100 / imgRatio) * screenRatio + '%';
+            }
+        }
+
+        // initial wrapper setup
+        img.onload = function () {
+            imgRatio = this.width / this.height;
+            resize();
+        }
+    </script>
+</body>
+
+</html>
