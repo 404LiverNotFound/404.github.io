@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 
+<!--
+    [TODO]
+- animation for btnpanel
+-->
+
 <html>
 
 <head>
     <title>Not_Found?</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta charset='utf-8' />
     <style>
         /* global */
@@ -73,14 +79,15 @@
         }
 
         #banner {
-            top: 50px;
+            /* top: 50px; */
             z-index: 0;
-            position: absolute;
+            position: relative;
             width: 100%;
             height: fit-content;
             text-align: center;
-            animation-name: banneranimation;
-            animation-duration: 1s;
+            opacity: 0;
+            /* animation-name: banneranimation;
+            animation-duration: 1s; */
         }
 
         #banner .background {
@@ -89,7 +96,7 @@
         }
 
         .big-text {
-            margin-top: 3px;
+            /* margin-top: 3px; */
             font-size: 50px;
         }
 
@@ -118,13 +125,14 @@
             position: relative;
             display: flex;
             z-index: -997;
-            top: 25px;
+            /* top: 25px; */
             right: 0%;
             height: 25px;
             width: 150px;
             list-style-type: none;
-            animation-name: dogeanimation;
-            animation-duration: 1s;
+            opacity: 0;
+            /* animation-name: dogeanimation;
+            animation-duration: 1s; */
         }
 
         #doge {
@@ -139,25 +147,41 @@
         /* buttons */
 
         #btnpanel {
+            background-color: #0000007F;
             display: flex;
             position: absolute;
-            bottom: 30px;
+            bottom: 0;
             margin: auto;
             left: 0;
             right: 0;
             text-align: center;
             width: max-content;
             padding: 5px;
-            animation-name: btnpanelanimation;
-            animation-duration: 1s;
+            /* animation-name: btnpanelanimation;
+            animation-duration: 1s; */
+            border-radius: 20px;
+            opacity: 0;
         }
 
-        /* 
-        #btnpanel .background {
+        #btnlabel {
+            margin: auto;
+            left: 0;
+            right: 0;
+            background-color: #0000007F;
+            padding: 5px;
+            border-radius: 10px;
+            display: flex;
+            position: absolute;
+            text-align: center;
+            width: max-content;
+            bottom: 90px;
+        }
+
+        /* #btnpanel .background {
             filter: brightness(70%);
         } */
 
-        .btn {
+        #btnpanel .btn {
             z-index: 1;
             display: block;
             height: 70px;
@@ -165,9 +189,10 @@
             margin: 5px;
             margin-left: 7px;
             margin-right: 7px;
+            border-radius: 25%;
         }
 
-        .btn img {
+        #btnpanel .btn img {
             margin-top: 5px;
             width: 60px;
             height: 60px;
@@ -176,15 +201,14 @@
             animation-fill-mode: backwards;
         }
 
-        .btn:hover {
+        #btnpanel .btn:hover {
             background: #000;
             filter: opacity(80%);
-            border-radius: 25%;
         }
 
         /* animation */
 
-        @keyframes banneranimation {
+        /* @keyframes banneranimation {
             from {
                 top: 0px;
                 opacity: 0%;
@@ -230,7 +254,7 @@
                 bottom: 125px;
                 opacity: 100%;
             }
-        }
+        } */
 
         @keyframes btnimganimation {
             from {
@@ -262,16 +286,20 @@
             <div id="doge"></div>
             <div id="doge"></div>
         </div>
-        <div id="btnpanel" style="bottom: 125px; animation-name: btnlabelanimation; animation-duration: 1s;">
-            <div class="background"></div>
+        <div id="btnlabel">
+            <!-- <div class="background"></div> -->
             Things I do :
         </div>
         <div id="btnpanel">
-            <div class="background"></div>
-            <div class="btn"><a href="https://store.steampowered.com/"><img src='./STEAM.png' alt='Steam' style="animation-delay: 1.25s;"></a></div>
-            <div class="btn"><a href="https://discord.com/"><img src='./DC.png' alt='Discord' style="animation-delay: 1.5s;"></a></div>
-            <div class="btn"><a href="https://youtube.com"><img src='./YT.png' alt='Youtube (music)' style="animation-delay: 1.75s;"></a></div>
-            <div class="btn"><a href="https://nisra.net"><img src='./NISRA.png' alt='NISRA' style="animation-delay: 2s;"></a></div>
+            <!-- <div class="background"></div> -->
+            <div class="btn"><a href="https://store.steampowered.com/"><img src='./STEAM.png' alt='Steam'
+                        style="animation-delay: 1.25s;"></a></div>
+            <div class="btn"><a href="https://discord.com/"><img src='./DC.png' alt='Discord'
+                        style="animation-delay: 1.5s;"></a></div>
+            <div class="btn"><a href="https://youtube.com"><img src='./YT.png' alt='Youtube (music)'
+                        style="animation-delay: 1.75s;"></a></div>
+            <div class="btn"><a href="https://nisra.net"><img src='./NISRA.png' alt='NISRA'
+                        style="animation-delay: 2s;"></a></div>
         </div>
     </div>
 
@@ -304,6 +332,13 @@
             imgRatio = this.width / this.height;
             resize();
         }
+
+        $(document).ready(function () {
+            $("#banner").animate({ top: "50px", opacity: "100%" }, 1000);
+            $(".dogecage").animate({ top: "25px", opacity: "100%" }, 1000);
+            $("#btnpanel").animate({ bottom: "30px", opacity: "100%" }, 1000);
+            $("#btnlabel").animate({ bottom: "125px", opacity: "100%" }, 1000);
+        });
     </script>
 
 </body>
